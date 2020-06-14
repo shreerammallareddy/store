@@ -1,81 +1,81 @@
----
-
-auth:
-    # A public key for verifying JWTs signed by api.screwdriver.cd
-    jwtPublicKey: |
-        -----BEGIN PUBLIC KEY-----
-        INSERT STUFF HERE
-        -----END PUBLIC KEY-----
-
-httpd:
-    # Port to listen on
-    port: 80
-    # Host to listen on (set to localhost to only accept connections from this machine)
-    host: 0.0.0.0
-    # Externally routable URI (usually your load balancer or CNAME)
-    uri: http://localhost
-    # SSL Support
-    tls: false
-        # If you want SSL, you can easily add it by replacing `tls: false` with an object that
-        # provides the options required by `tls.createServer`
-        # https://nodejs.org/api/tls.html#tls_tls_createserver_options_secureconnectionlistener
-        # key: |
-        #     -----BEGIN RSA PRIVATE KEY-----
-        #     INSERT STUFF HERE
-        #     -----END RSA PRIVATE KEY-----
-        # cert: |
-        #     -----BEGIN CERTIFICATE-----
-        #     INSERT STUFF HERE
-        #     -----END CERTIFICATE-----
-
-builds:
-    # How long should builds stay around for
-    expiresInSec: 1814400000 # 3 weeks
-    # Upper limit on incoming uploads to builds
-    maxByteSize: 1073741824 # 1GB
-
-caches:
-    # How long should caches stay around for
-    expiresInSec: 2592000000 # 30 days
-    # Upper limit on incoming uploads to cache
-    maxByteSize: 5368709120 # 5GB
-
-commands:
-    # How long should commands stay around for
-    expiresInSec: 31536000000 # 1 year
-    # Upper limit on incoming uploads to commands
-    maxByteSize: 1073741824 # 1GB
-
-strategy:
-    plugin: memory
-    disk:
-        # Reference for the following options: https://github.com/mirusresearch/catbox-disk
-        # existing dir to store the cache
-        cachePath: /tmp/screwdriver
-        # number of milliseconds between each cache cleanup for disk space recovery, Set to 0 to deactivate entirely.
-        cleanEvery: 0
-    memory:
-        # Upper limit on the number of bytes that can be stored in the cache
-        maxByteSize: 1073741824 # 1GB
-        # Basically, always set this to true
-        allowMixedContent: true
-    s3:
-        # Amazon access key
-        accessKeyId: null
-        # Amazon secret access key
-        secretAccessKey: null
-        # Amazon S3 region
-        region: YOUR-REGION
-        # Amazon S3 bucket that you have write access to
-        bucket: YOUR-BUCKET-ID
-        # Whether to force path style URLs for S3 objects.
-        forcePathStyle: false
-        # aws-sdk options for the size in bytes for each individual part to be uploaded.
-        partSize: 5242880 # default 5mb
-        # the default ACL for putting objects in your s3 bucket
-        ACL: 'public-read'
-
-ecosystem:
-    ui: https://cd.screwdriver.cd
-    api: https://api.screwdriver.cd
-    allowCors: []
+#---
+#
+#auth:
+#    # A public key for verifying JWTs signed by api.screwdriver.cd
+#    jwtPublicKey: |
+#        -----BEGIN PUBLIC KEY-----
+#        INSERT STUFF HERE
+#        -----END PUBLIC KEY-----
+#
+#httpd:
+#    # Port to listen on
+#    port: 80
+#    # Host to listen on (set to localhost to only accept connections from this machine)
+#    host: 0.0.0.0
+#    # Externally routable URI (usually your load balancer or CNAME)
+#    uri: http://localhost
+#    # SSL Support
+#    tls: false
+#        # If you want SSL, you can easily add it by replacing `tls: false` with an object that
+#        # provides the options required by `tls.createServer`
+#        # https://nodejs.org/api/tls.html#tls_tls_createserver_options_secureconnectionlistener
+#        # key: |
+#        #     -----BEGIN RSA PRIVATE KEY-----
+#        #     INSERT STUFF HERE
+#        #     -----END RSA PRIVATE KEY-----
+#        # cert: |
+#        #     -----BEGIN CERTIFICATE-----
+#        #     INSERT STUFF HERE
+#        #     -----END CERTIFICATE-----
+#
+#builds:
+#    # How long should builds stay around for
+#    expiresInSec: 1814400000 # 3 weeks
+#    # Upper limit on incoming uploads to builds
+#    maxByteSize: 1073741824 # 1GB
+#
+#caches:
+#    # How long should caches stay around for
+#    expiresInSec: 2592000000 # 30 days
+#    # Upper limit on incoming uploads to cache
+#    maxByteSize: 5368709120 # 5GB
+#
+#commands:
+#    # How long should commands stay around for
+#    expiresInSec: 31536000000 # 1 year
+#    # Upper limit on incoming uploads to commands
+#    maxByteSize: 1073741824 # 1GB
+#
+#strategy:
+#    plugin: memory
+#    disk:
+#        # Reference for the following options: https://github.com/mirusresearch/catbox-disk
+#        # existing dir to store the cache
+#        cachePath: /tmp/screwdriver
+#        # number of milliseconds between each cache cleanup for disk space recovery, Set to 0 to deactivate entirely.
+#        cleanEvery: 0
+#    memory:
+#        # Upper limit on the number of bytes that can be stored in the cache
+#        maxByteSize: 1073741824 # 1GB
+#        # Basically, always set this to true
+#        allowMixedContent: true
+#    s3:
+#        # Amazon access key
+#        accessKeyId: null
+#        # Amazon secret access key
+#        secretAccessKey: null
+#        # Amazon S3 region
+#        region: YOUR-REGION
+#        # Amazon S3 bucket that you have write access to
+#        bucket: YOUR-BUCKET-ID
+#        # Whether to force path style URLs for S3 objects.
+#        forcePathStyle: false
+#        # aws-sdk options for the size in bytes for each individual part to be uploaded.
+#        partSize: 5242880 # default 5mb
+#        # the default ACL for putting objects in your s3 bucket
+#        ACL: 'public-read'
+#
+#ecosystem:
+#    ui: https://cd.screwdriver.cd
+#    api: https://api.screwdriver.cd
+#    allowCors: []
